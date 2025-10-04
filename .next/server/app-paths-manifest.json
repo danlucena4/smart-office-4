@@ -1,10 +1,10 @@
 {
   "/(dashboard)/acquisition/page": "app/(dashboard)/acquisition/page.js",
-  "/(dashboard)/page": "app/(dashboard)/page.js",
   "/(dashboard)/inventory/page": "app/(dashboard)/inventory/page.js",
-  "/(dashboard)/onboarding/page": "app/(dashboard)/onboarding/page.js",
   "/(dashboard)/engagement/page": "app/(dashboard)/engagement/page.js",
-  "/(dashboard)/adoptions/page": "app/(dashboard)/adoptions/page.js",
+  "/(dashboard)/onboarding/page": "app/(dashboard)/onboarding/page.js",
+  "/(dashboard)/page": "app/(dashboard)/page.js",
   "/(dashboard)/operations/page": "app/(dashboard)/operations/page.js",
+  "/(dashboard)/adoptions/page": "app/(dashboard)/adoptions/page.js",
   "/(dashboard)/ai-reports/page": "app/(dashboard)/ai-reports/page.js"
 }
