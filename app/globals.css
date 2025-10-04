@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --sidebar-w: 260px; }
+
+html, body { height: 100%; }
+body { @apply bg-neutral-50 text-neutral-900 transition-colors; }
+a { @apply text-inherit no-underline; }
+.container { @apply max-w-7xl mx-auto px-4; }
+
+/* Dark */
+.dark body { background: #1e1e1e; color: #faf9fe; }
+.dark .card { background: #242424; border-color: #2e2e2e; color: #faf9fe; }
+.card { background: #ffffff; border: 1px solid #e5e5e5; }
+.header-blur { @apply bg-white/80; }
+.dark .header-blur { background: rgba(30,30,30,0.7); }
+.sidebar-bg { @apply bg-white/80; }
+.dark .sidebar-bg { background: rgba(30,30,30,0.7); }
+.border-base { border-color: #e5e5e5; }
+.dark .border-base { border-color: #2e2e2e; }
+
+/* Buttons hover tweaks */
+button:hover { filter: brightness(0.98); }
+.dark button:hover { filter: brightness(1.05); }
