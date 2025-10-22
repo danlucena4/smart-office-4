@@ -1,10 +1,10 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(dashboard)/page": "app/(dashboard)/page.js",
+  "/(dashboard)/onboarding/page": "app/(dashboard)/onboarding/page.js",
   "/(dashboard)/acquisition/page": "app/(dashboard)/acquisition/page.js",
   "/(dashboard)/inventory/page": "app/(dashboard)/inventory/page.js",
-  "/(dashboard)/engagement/page": "app/(dashboard)/engagement/page.js",
-  "/(dashboard)/onboarding/page": "app/(dashboard)/onboarding/page.js",
-  "/(dashboard)/page": "app/(dashboard)/page.js",
-  "/(dashboard)/operations/page": "app/(dashboard)/operations/page.js",
   "/(dashboard)/adoptions/page": "app/(dashboard)/adoptions/page.js",
-  "/(dashboard)/ai-reports/page": "app/(dashboard)/ai-reports/page.js"
+  "/(dashboard)/engagement/page": "app/(dashboard)/engagement/page.js",
+  "/(dashboard)/operations/page": "app/(dashboard)/operations/page.js"
 }

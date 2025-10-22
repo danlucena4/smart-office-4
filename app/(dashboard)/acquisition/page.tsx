@@ -1,20 +1,24 @@
-import SimpleBarChart from "@/components/charts/SimpleBarChart";
-import SimplePieChart from "@/components/charts/SimplePieChart";
-import { acquisitionSources, acquisitionCosts } from "@/data/acquisition";
+import AdvancedPieChart from "@/components/charts/AdvancedPieChart";
+import AdvancedBarChart from "@/components/charts/AdvancedBarChart";
+import { acquisitionSources, acquisitionCosts } from "@/data/advanced-acquisition";
 
 export default function AcquisitionPage() {
   return (
-    <div className="space-y-6">
-      <h2 className="text-xl font-semibold">Aquisição & Tráfego</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card rounded-lg p-4">
-          <h3 className="mb-2 font-medium">Origem dos usuários</h3>
-          <SimplePieChart data={acquisitionSources} />
-        </div>
-        <div className="card rounded-lg p-4">
-          <h3 className="mb-2 font-medium">Investimento por canal</h3>
-          <SimpleBarChart data={acquisitionCosts} />
-        </div>
+    <div className="space-y-6 sm:space-y-8">
+      <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-neutral-100">Aquisição & Tráfego</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        <AdvancedPieChart 
+          data={acquisitionSources}
+          title="Origem dos Usuários"
+          height={400}
+          showLegend={true}
+        />
+        <AdvancedBarChart 
+          data={acquisitionCosts}
+          title="Investimento por Canal (R$)"
+          height={400}
+          showGradient={true}
+        />
       </div>
     </div>
   );

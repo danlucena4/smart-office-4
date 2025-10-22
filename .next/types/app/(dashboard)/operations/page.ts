@@ -1,4 +1,4 @@
-// File: E:\Downloads\smart-office-4\app\(dashboard)\operations\page.tsx
+// File: E:\Area de trabalho\smart-office-4\app\(dashboard)\operations\page.tsx
 import * as entry from '../../../../../app/(dashboard)/operations/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

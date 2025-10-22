@@ -36,7 +36,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main */}
       <main className="flex flex-col">
         <Topbar onMenuClick={() => setOpen(true)} />
-        <div className="p-6">{children}</div>
+        <div className="px-2 py-3 sm:p-0 md:p-6">{children}</div>
       </main>
     </div>
   );
