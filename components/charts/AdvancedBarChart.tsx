@@ -32,7 +32,7 @@ export default function AdvancedBarChart({
   
   return (
     <div 
-      className="card rounded-xl p-3 sm:p-2 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg"
+      className="card rounded-xl p-3 sm:p-6 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg"
     >
       <h3 className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4 sm:mb-6">{title}</h3>
       

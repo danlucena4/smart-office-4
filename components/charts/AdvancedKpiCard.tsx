@@ -56,7 +56,7 @@ export default function AdvancedKpiCard({ kpi, index = 0 }: AdvancedKpiCardProps
   
   return (
     <div
-      className="card rounded-xl p-3 sm:p-2 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300 group"
+      className="card rounded-xl p-3 sm:p-6 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300 group"
     >
       <div className="flex items-center justify-between mb-3 sm:mb-4">
         <div className="p-2 sm:p-3 rounded-xl bg-[#a78bfa] shadow-lg flex items-center justify-center">

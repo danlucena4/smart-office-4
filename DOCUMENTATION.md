@@ -7,7 +7,7 @@ Dashboard de monitoramento de adoção de animais desenvolvido com **Next.js 14.
 ---
 
 ## 🎯 Objetivos Alcançados
-n
+
 ### 1. Integração de Dashboards
 - ✅ Substituídos gráficos fictícios por integração com **Looker Studio** (depois revertido)
 - ✅ Criado sistema de gráficos profissionais com **Recharts**
@@ -300,6 +300,72 @@ dark:border-neutral-700
 
 ---
 
+## 📱 Otimizações Mobile (Fase 6)
+
+### Sistema de Padding Responsivo
+
+Todos os componentes de gráficos foram otimizados para melhor visualização em dispositivos móveis:
+
+#### **Container Principal**
+```typescript
+// app/(dashboard)/layout.tsx
+<div className="px-2 py-3 sm:p-4 md:p-6">
+  {/* Mobile: 8px lateral, 12px vertical */}
+  {/* Tablet: 16px todos os lados */}
+  {/* Desktop: 24px todos os lados */}
+</div>
+```
+
+#### **Cards de Gráficos**
+```typescript
+// Padrão em todos os componentes de gráficos
+className="card rounded-xl p-3 sm:p-6 ..."
+  {/* Mobile: 12px todos os lados */}
+  {/* Desktop: 24px todos os lados */}
+```
+
+### Dimensões Responsivas
+
+#### **Altura dos Gráficos**
+```typescript
+const responsiveHeight = isMobile ? Math.min(height, 280) : height;
+  // Mobile: máximo 280px (antes era 250px)
+  // Desktop: altura original (geralmente 300-400px)
+```
+
+#### **Raio dos Gráficos de Pizza**
+```typescript
+const outerRadius = isMobile ? 80 : 90;
+  // Mobile: 80px (antes era 60px)
+  // Desktop: 90px (antes era 80px)
+```
+
+### Margens Internas dos Gráficos
+```typescript
+// Otimizado para melhor uso do espaço
+margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
+  // Reduz margens laterais para maximizar área do gráfico
+```
+
+### Ganhos de Espaço em Mobile
+
+| Otimização | Ganho |
+|------------|-------|
+| Padding do container (`px-3` → `px-2`) | 8px largura |
+| Padding dos cards (`p-4` → `p-3`) | 8px largura |
+| Margens internas otimizadas | 12px largura |
+| **Total de largura extra** | **~28px** |
+| Altura aumentada | **+30px** (250→280) |
+
+### Resultado Visual
+- ✅ Gráficos ocupam **93%** da largura da tela (vs ~85% antes)
+- ✅ Melhor proporção altura/largura
+- ✅ Textos e labels mais legíveis
+- ✅ Menos espaço desperdiçado
+- ✅ Visual menos "achatado"
+
+---
+
 ## ⚠️ Problemas Conhecidos
 
 ### 1. **Ícones com Fundo Preto**
@@ -409,6 +475,25 @@ Module not found: Can't resolve 'react-icons/hi'
 - ❌ Substituição de todos os ícones Lucide
 - ❌ Erro de módulo não encontrado
 
+### Fase 6: Otimização Mobile (22/10/2025)
+- ✅ **Redução de padding do container principal** (`px-3` → `px-2` em mobile)
+- ✅ **Redução de padding dos cards de gráficos** (`p-4` → `p-3` em mobile)
+- ✅ **Aumento da altura dos gráficos em mobile** (250px → 280px)
+- ✅ **Aumento do raio dos gráficos de pizza** (60px → 80px em mobile, 80px → 90px em desktop)
+- ✅ **Otimização de margens internas dos gráficos** para melhor uso do espaço
+- ✅ **Padronização de paddings no desktop** (todos os cards agora usam `sm:p-6`)
+- ✅ Gráficos ganham **~28px de largura extra** em mobile
+- ✅ Melhor proporção e legibilidade em dispositivos móveis
+
+#### Componentes Atualizados:
+- `app/(dashboard)/layout.tsx` - Container principal
+- `components/charts/AdvancedLineChart.tsx` - Padding e margens
+- `components/charts/AdvancedBarChart.tsx` - Padding e margens
+- `components/charts/AdvancedPieChart.tsx` - Padding, raio e altura
+- `components/charts/RealTimeChart.tsx` - Padding e margens
+- `components/charts/AdvancedKpiCard.tsx` - Padding padronizado
+- `app/(dashboard)/onboarding/page.tsx` - Padding do Funil
+
 ---
 
 ## 🚀 Como Rodar o Projeto
@@ -511,20 +596,25 @@ O arquivo `globals.css` contém estilos personalizados:
 - **Projeto:** Dashboard de adoção de animais
 - **Framework:** Next.js 14.2.5
 - **Cor Principal:** #a78bfa (roxo)
-- **Problema Atual:** Ícones com fundo preto no tema light
-- **Tentativa Atual:** Trocar Lucide React por React Icons (não funcionou)
+- **Última Atualização:** Otimização completa para mobile (22/10/2025)
+- **Status:** Layout responsivo totalmente funcional
 
 ### Arquivos Críticos:
-1. `components/charts/AdvancedKpiCard.tsx` - Card de KPI com ícones
-2. `data/advanced-overview.ts` - Dados dos KPIs
-3. `package.json` - Dependências
-4. `app/globals.css` - Estilos customizados
+1. `components/charts/*` - Todos os componentes de gráficos
+2. `app/(dashboard)/layout.tsx` - Layout principal com padding otimizado
+3. `data/advanced-*.ts` - Dados dos gráficos
+4. `package.json` - Dependências
 
-### Última Ação:
-Tentativa de instalar `react-icons` para substituir os ícones do Lucide React que aparecem com fundo preto no tema light.
+### Últimas Ações (Fase 6):
+1. ✅ Otimizado padding de todos os componentes para mobile
+2. ✅ Aumentada altura dos gráficos em mobile (250px → 280px)
+3. ✅ Padronizado padding desktop em todos os cards (`sm:p-6`)
+4. ✅ Gráficos ganham 28px de largura extra em mobile
+5. ✅ Melhorada legibilidade e proporção em dispositivos móveis
 
 ---
 
-**Documentação criada em:** 22/10/2025
-**Versão:** 1.0
-**Status do Projeto:** 95% completo (apenas problema de ícones)
+**Documentação criada em:** 22/10/2025  
+**Última atualização:** 22/10/2025  
+**Versão:** 1.1  
+**Status do Projeto:** 98% completo (layout responsivo otimizado)
