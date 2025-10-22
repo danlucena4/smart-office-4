@@ -1382,6 +1382,9 @@ button:hover { filter: brightness(0.98); }
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
+.first-letter\:uppercase::first-letter {
+  text-transform: uppercase;
+}
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;

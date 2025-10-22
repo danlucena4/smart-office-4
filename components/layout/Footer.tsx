@@ -1,5 +1,6 @@
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const currentMonthName = new Date().toLocaleString('pt-BR', { month: 'long' });
   
   return (
     <footer className="mt-auto border-t border-neutral-200 dark:border-neutral-700 bg-white dark:bg-[#1e1e1e]">
@@ -11,7 +12,7 @@ export default function Footer() {
               © {currentYear} Smart Office - Adotaí
             </p>
             <p className="text-xs mt-1">
-              Desenvolvido com ❤️ para adoção de animais
+              Desenvolvido com ❤️ para monitoramento de adoção de animais.
             </p>
           </div>
           
@@ -20,8 +21,8 @@ export default function Footer() {
           {/* Autor */}
           <div className="text-center sm:text-right text-xs">
             <p className="font-medium">Projeto Acadêmico</p>
-            <p className="mt-1">
-              Outubro 2025
+            <p className="mt-1 first-letter:uppercase">
+              {currentMonthName} de {currentYear}
             </p>
           </div>
         </div>
