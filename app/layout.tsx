@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Smart Office - Dashboard de Adoção de Animais",
+  title: "Smart Office - Adotaí",
   description: "Dashboard profissional com métricas em tempo real para ONGs de adoção de animais. Monitore adoções, engajamento, operações e muito mais.",
   keywords: ["dashboard", "adoção de animais", "métricas", "analytics", "next.js", "react"],
   authors: [{ name: "Smart Office Team" }],
@@ -11,13 +11,13 @@ export const metadata = {
     type: "website",
     locale: "pt_BR",
     url: "https://smart-office-dashboard.vercel.app",
-    title: "Smart Office - Dashboard de Adoção",
+    title: "Smart Office - Dashboard Adotaí",
     description: "Dashboard profissional para monitoramento de adoção de animais",
-    siteName: "Smart Office Dashboard",
+    siteName: "Smart Office - Adotaí",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Smart Office - Dashboard de Adoção",
+    title: "Smart Office - Adotaí",
     description: "Dashboard profissional para monitoramento de adoção de animais",
   },
   robots: {
