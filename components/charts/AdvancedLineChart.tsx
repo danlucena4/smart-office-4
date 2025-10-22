@@ -16,6 +16,7 @@ interface AdvancedLineChartProps {
   showTrend?: boolean;
   showTarget?: boolean;
   height?: number;
+  valueLabel?: string;
 }
 
 export default function AdvancedLineChart({ 
@@ -24,7 +25,8 @@ export default function AdvancedLineChart({
   color = "#3b82f6", 
   showTrend = true,
   showTarget = false,
-  height = 300 
+  height = 300,
+  valueLabel = "Valor"
 }: AdvancedLineChartProps) {
   const latestValue = data[data.length - 1]?.value || 0;
   const previousValue = data[data.length - 2]?.value || 0;
@@ -86,6 +88,7 @@ export default function AdvancedLineChart({
                 color: '#374151'
               }}
               labelStyle={{ color: '#6b7280', fontSize: '14px' }}
+              formatter={(value: number) => [value.toLocaleString('pt-BR'), valueLabel]}
             />
             <Area
               type="monotone"

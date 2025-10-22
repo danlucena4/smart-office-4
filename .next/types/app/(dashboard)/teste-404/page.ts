@@ -1,8 +1,8 @@
-// File: E:\Area de trabalho\smart-office-4\app\(dashboard)\inventory\page.tsx
-import * as entry from '../../../../../app/(dashboard)/inventory/page.js'
+// File: E:\Area de trabalho\smart-office-4\app\(dashboard)\teste-404\page.tsx
+import * as entry from '../../../../../app/(dashboard)/teste-404/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../../app/(dashboard)/inventory/page.js')
+type TEntry = typeof import('../../../../../app/(dashboard)/teste-404/page.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

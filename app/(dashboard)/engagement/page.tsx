@@ -17,12 +17,14 @@ export default function EngagementPage() {
           color="#a78bfa"
           showTrend={true}
           height={400}
+          valueLabel="Usuários Ativos"
         />
         <AdvancedPieChart 
           data={keyEvents}
           title="Eventos-Chave (Último Mês)"
           height={400}
           showLegend={true}
+          valueLabel="Eventos"
         />
       </div>
     </div>

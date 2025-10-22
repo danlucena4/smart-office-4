@@ -14,13 +14,15 @@ interface RealTimeChartProps {
   color?: string;
   height?: number;
   updateInterval?: number;
+  valueLabel?: string;
 }
 
 export default function RealTimeChart({ 
   title, 
   color = "#3b82f6", 
   height = 300,
-  updateInterval = 2000 
+  updateInterval = 2000,
+  valueLabel = "Visualizações"
 }: RealTimeChartProps) {
   const [data, setData] = useState<RealTimeDataPoint[]>([]);
   const [isOnline, setIsOnline] = useState(true);
@@ -129,6 +131,7 @@ export default function RealTimeChart({
                     color: '#374151'
                   }}
                   labelStyle={{ color: '#6b7280', fontSize: '14px' }}
+                  formatter={(value: number) => [value.toLocaleString('pt-BR'), valueLabel]}
                 />
                 <Area
                   type="monotone"

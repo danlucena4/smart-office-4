@@ -13,6 +13,7 @@ interface AdvancedPieChartProps {
   title: string;
   height?: number;
   showLegend?: boolean;
+  valueLabel?: string;
 }
 
 const defaultColors = [
@@ -24,7 +25,8 @@ export default function AdvancedPieChart({
   data, 
   title, 
   height = 300,
-  showLegend = true 
+  showLegend = true,
+  valueLabel = "Quantidade"
 }: AdvancedPieChartProps) {
   const total = data.reduce((sum, item) => sum + item.value, 0);
   const [isMobile, setIsMobile] = useState(false);
@@ -102,7 +104,7 @@ export default function AdvancedPieChart({
                 color: '#374151',
                 fontSize: '12px'
               }}
-              formatter={(value: number) => [value, 'Valor']}
+              formatter={(value: number) => [value.toLocaleString('pt-BR'), valueLabel]}
             />
           </PieChart>
         </ResponsiveContainer>

@@ -53,6 +53,7 @@ export default function OnboardingPage() {
           color="#a78bfa"
           showTrend={true}
           height={400}
+          valueLabel="Score NPS"
         />
         <div className="card rounded-xl p-3 sm:p-6 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg">
           <h3 className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4">Funil de Onboarding</h3>

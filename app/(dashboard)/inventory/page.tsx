@@ -52,6 +52,7 @@ export default function InventoryPage() {
           title="Animais por Categoria"
           height={400}
           showLegend={true}
+          valueLabel="Animais (%)"
         />
         <AdvancedLineChart 
           data={adoptionTimeData}
@@ -59,6 +60,7 @@ export default function InventoryPage() {
           color="#a78bfa"
           showTrend={true}
           height={400}
+          valueLabel="Dias"
         />
       </div>
     </div>

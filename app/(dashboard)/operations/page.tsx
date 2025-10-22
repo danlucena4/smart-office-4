@@ -30,6 +30,7 @@ export default function OperationsPage() {
           title="Chamados por Tipo"
           height={400}
           showGradient={true}
+          valueLabel="Chamados"
         />
         <AdvancedLineChart 
           data={responseTimeData}
@@ -37,6 +38,7 @@ export default function OperationsPage() {
           color="#a78bfa"
           showTrend={true}
           height={400}
+          valueLabel="Tempo (horas)"
         />
       </div>
 
@@ -47,6 +49,7 @@ export default function OperationsPage() {
           color="#a78bfa"
           height={350}
           updateInterval={3000}
+          valueLabel="Chamados"
         />
       </div>
     </div>

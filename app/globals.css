@@ -23,3 +23,19 @@ a { @apply text-inherit no-underline; }
 /* Buttons hover tweaks */
 button:hover { filter: brightness(0.98); }
 .dark button:hover { filter: brightness(1.05); }
+
+/* Loading animations */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
