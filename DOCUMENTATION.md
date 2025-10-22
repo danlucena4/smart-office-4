@@ -618,3 +618,6 @@ O arquivo `globals.css` contém estilos personalizados:
 **Última atualização:** 22/10/2025  
 **Versão:** 1.1  
 **Status do Projeto:** 98% completo (layout responsivo otimizado)
+
+- O dev Dan esteve aqui e conferiu essa documentação toda.
+Assinado : Danzin
