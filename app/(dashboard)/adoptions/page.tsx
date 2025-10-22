@@ -13,12 +13,14 @@ export default function AdoptionsPage() {
           color="#a78bfa"
           showTrend={true}
           height={400}
+          valueLabel="Adoções"
         />
         <AdvancedBarChart 
           data={rejectionReasons}
           title="Motivos de Reprovação"
           height={400}
           showGradient={true}
+          valueLabel="Casos"
         />
       </div>
     </div>

@@ -24,6 +24,7 @@ export default function OverviewPage() {
           showTrend={true}
           showTarget={true}
           height={400}
+          valueLabel="Visitantes"
         />
       </section>
 
@@ -34,6 +35,7 @@ export default function OverviewPage() {
           color="#a78bfa"
           height={350}
           updateInterval={1500}
+          valueLabel="Visualizações"
         />
       </section>
     </div>

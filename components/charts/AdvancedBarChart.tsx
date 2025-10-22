@@ -12,6 +12,7 @@ interface AdvancedBarChartProps {
   title: string;
   height?: number;
   showGradient?: boolean;
+  valueLabel?: string;
 }
 
 const defaultColors = [
@@ -23,7 +24,8 @@ export default function AdvancedBarChart({
   data, 
   title, 
   height = 300,
-  showGradient = true 
+  showGradient = true,
+  valueLabel = "Valor"
 }: AdvancedBarChartProps) {
   const maxValue = Math.max(...data.map(d => d.value));
   
@@ -76,6 +78,7 @@ export default function AdvancedBarChart({
                 color: '#374151'
               }}
               labelStyle={{ color: '#6b7280', fontSize: '14px' }}
+              formatter={(value: number) => [value.toLocaleString('pt-BR'), valueLabel]}
             />
             <Bar dataKey="value" radius={[4, 4, 0, 0]}>
               {data.map((entry, index) => (

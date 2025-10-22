@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
-import "@/app/globals.css";
+import Footer from "@/components/layout/Footer";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -34,9 +34,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </div>
 
       {/* Main */}
-      <main className="flex flex-col">
+      <main className="flex flex-col min-h-screen">
         <Topbar onMenuClick={() => setOpen(true)} />
-        <div className="px-2 py-3 sm:p-0 md:p-6">{children}</div>
+        <div className="flex-1 px-2 py-3 sm:p-4 md:p-6">{children}</div>
+        <Footer />
       </main>
     </div>
   );

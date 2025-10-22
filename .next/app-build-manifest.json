@@ -8,28 +8,43 @@
     "/(dashboard)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/(dashboard)/layout.css",
       "static/chunks/app/(dashboard)/layout.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ],
+    "/(dashboard)/teste-404/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/teste-404/page.js"
     ],
     "/(dashboard)/acquisition/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/acquisition/page.js"
     ],
-    "/(dashboard)/onboarding/page": [
+    "/(dashboard)/operations/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/onboarding/page.js"
+      "static/chunks/app/(dashboard)/operations/page.js"
     ],
-    "/(dashboard)/inventory/page": [
+    "/(dashboard)/ai-reports/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/inventory/page.js"
+      "static/chunks/app/(dashboard)/ai-reports/page.js"
     ],
     "/(dashboard)/engagement/page": [
       "static/chunks/webpack.js",
@@ -41,15 +56,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/adoptions/page.js"
     ],
-    "/(dashboard)/operations/page": [
+    "/(dashboard)/onboarding/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/operations/page.js"
-    ],
-    "/(dashboard)/ai-reports/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/ai-reports/page.js"
+      "static/chunks/app/(dashboard)/onboarding/page.js"
     ]
   }
 }

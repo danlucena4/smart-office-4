@@ -12,12 +12,14 @@ export default function AcquisitionPage() {
           title="Origem dos Usuários"
           height={400}
           showLegend={true}
+          valueLabel="Usuários"
         />
         <AdvancedBarChart 
           data={acquisitionCosts}
           title="Investimento por Canal (R$)"
           height={400}
           showGradient={true}
+          valueLabel="Investimento (R$)"
         />
       </div>
     </div>
