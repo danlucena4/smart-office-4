@@ -1,6 +1,8 @@
 "use client";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { useState, useEffect } from 'react';
+import ExportChartButton from '@/components/ui/ExportChartButton';
+import { exportChartToExcel, getFileNameWithDate } from '@/lib/export-excel';
 
 interface DataPoint {
   name: string;
@@ -52,11 +54,30 @@ export default function AdvancedPieChart({
     return `${name} ${(percent * 100).toFixed(0)}%`;
   };
 
+  const handleExport = () => {
+    const fileName = getFileNameWithDate(title.toLowerCase().replace(/\s+/g, '-'));
+    const exportData = data.map(item => ({
+      'Categoria': item.name,
+      [valueLabel]: item.value,
+      'Percentual (%)': ((item.value / total) * 100).toFixed(1),
+    }));
+    // Adicionar total
+    exportData.push({
+      'Categoria': 'TOTAL',
+      [valueLabel]: total,
+      'Percentual (%)': '100.0',
+    });
+    exportChartToExcel(exportData, fileName, title);
+  };
+
   return (
     <div 
       className="card rounded-xl p-3 sm:p-6 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg"
     >
-      <h3 className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4 sm:mb-6">{title}</h3>
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h3 className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200">{title}</h3>
+        <ExportChartButton onExport={handleExport} />
+      </div>
       
       {/* Legenda customizada para mobile */}
       {showLegend && isMobile && (

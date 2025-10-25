@@ -2,8 +2,8 @@
 
 > Dashboard profissional de adoção de animais desenvolvido com Next.js 14, React 18, TypeScript e Tailwind CSS.
 
-**Versão:** 1.1  
-**Data:** 22/10/2025  
+**Versão:** 1.2  
+**Data:** 25/10/2025  
 **Status:** Em produção 🚀
 
 ---
@@ -30,6 +30,7 @@ Sistema completo de dashboards para monitoramento de métricas de adoção de an
 - ✅ **Gráficos em tempo real** com atualização automática
 - ✅ Cards KPI com indicadores de tendência
 - ✅ Tooltips profissionais com formatação brasileira
+- ✅ **Exportação para Excel** - Botão individual em cada gráfico
 
 ### 🎯 **8 Dashboards Especializados**
 1. **Visão Geral** - KPIs principais e evolução de visitantes
@@ -62,6 +63,7 @@ Sistema completo de dashboards para monitoramento de métricas de adoção de an
 | **Tailwind CSS** | 3.4.10 | Estilização |
 | **Recharts** | 2.12.7 | Gráficos |
 | **Lucide React** | 0.460.0 | Ícones |
+| **XLSX (SheetJS)** | Latest | Exportação Excel |
 
 ---
 
@@ -127,7 +129,10 @@ smart-office-4/
 │       ├── Card.tsx
 │       ├── Badge.tsx
 │       ├── ChartSkeleton.tsx
-│       └── EmptyState.tsx
+│       ├── EmptyState.tsx
+│       ├── ExportButton.tsx
+│       ├── ExportChartButton.tsx
+│       └── ExportKpisButton.tsx
 ├── data/                        # Dados mock
 │   ├── advanced-overview.ts
 │   ├── advanced-acquisition.ts
@@ -135,7 +140,8 @@ smart-office-4/
 │   └── advanced-engagement.ts
 ├── lib/                         # Utilitários
 │   ├── colors.ts
-│   └── types.ts
+│   ├── types.ts
+│   └── export-excel.ts          # Funções de exportação
 └── public/                      # Arquivos estáticos
 ```
 
@@ -200,6 +206,125 @@ Estado vazio elegante.
 - `title` - Título
 - `message` - Mensagem
 - `icon` - Tipo de ícone
+
+### **8. ExportChartButton**
+Botão de exportação para Excel em cada gráfico.
+
+**Props:**
+- `onExport` - Função de callback
+- `tooltip` - Texto do tooltip
+- `size` - Tamanho do botão ('sm' | 'md')
+
+---
+
+## 📥 Sistema de Exportação para Excel
+
+### **Visão Geral**
+Cada gráfico possui seu próprio botão de exportação no canto superior direito, permitindo que o usuário exporte os dados específicos daquele dashboard para Excel (.xlsx).
+
+### **Características**
+- ✅ **Botão individual** em cada gráfico
+- ✅ **Exportação granular** - usuário escolhe o que exportar
+- ✅ **Formato Excel nativo** (.xlsx)
+- ✅ **Nome de arquivo inteligente** com data/hora
+- ✅ **Sanitização automática** de caracteres especiais
+- ✅ **Colunas calculadas** (percentuais, totais, médias)
+- ✅ **Validação de dados** antes da exportação
+- ✅ **Feedback visual** durante o processo
+
+### **Gráficos com Exportação (17 no total)**
+
+#### **Visão Geral (3)**
+1. Evolução Mensal de Visitantes
+2. Visualizações de Perfis por Minuto
+
+#### **Aquisição & Tráfego (2)**
+1. Origem dos Usuários
+2. Investimento por Canal
+
+#### **Engajamento (2)**
+1. Usuários Ativos Mensais (MAU)
+2. Eventos-Chave
+
+#### **Adoções (2)**
+1. Adoções por Semana
+2. Motivos de Reprovação
+
+#### **Inventário (2)**
+1. Animais por Categoria
+2. Tempo até Adoção
+
+#### **Onboarding (1)**
+1. Evolução do NPS
+
+#### **Operações (3)**
+1. Chamados por Tipo
+2. Tempo de Resposta
+3. Atividade em Tempo Real
+
+### **Formato dos Arquivos Exportados**
+
+**Nomenclatura:**
+```
+[nome-do-grafico]_YYYY-MM-DD_HH-MM-SS.xlsx
+```
+
+**Exemplo:**
+```
+origem-dos-usuarios_2025-10-25_14-30-15.xlsx
+```
+
+**Conteúdo:**
+- Cada arquivo contém **1 aba** com os dados do gráfico
+- Colunas formatadas em português
+- Totais e percentuais calculados automaticamente
+- Largura das colunas ajustada automaticamente
+
+### **Dados Enriquecidos**
+
+Além dos dados brutos, cada exportação inclui:
+
+- **Gráficos de Pizza/Barra:**
+  - Percentual do total
+  - Linha de TOTAL
+  
+- **Gráficos de Linha:**
+  - Metas (quando aplicável)
+  - Diferenças calculadas
+  - Atingimento percentual
+
+- **Gráficos em Tempo Real:**
+  - Status (Online/Offline)
+  - Timestamp exato
+
+### **Funções de Exportação**
+
+**`lib/export-excel.ts`** contém:
+
+```typescript
+// Exportação genérica
+exportToExcel(options: ExportOptions)
+
+// Exportação de KPIs
+exportKpisToExcel(kpis: KpiData[], fileName: string)
+
+// Exportação de gráficos
+exportChartToExcel(chartData: ChartData[], fileName: string, sheetName: string)
+
+// Exportação de dashboard completo (múltiplas abas)
+exportDashboardToExcel(sections: Section[], fileName: string)
+
+// Geração de nome com data
+getFileNameWithDate(baseName: string): string
+```
+
+### **Tratamento de Erros**
+
+- ✅ Validação de dados antes da exportação
+- ✅ Sanitização de nomes de arquivo e abas
+- ✅ Mensagens de erro específicas
+- ✅ Logs detalhados no console para debug
+- ✅ Feedback visual para o usuário
 
 ---
 
@@ -321,7 +446,17 @@ Todos os dados são **simulados** mas seguem padrões realistas:
 
 ## 🔄 Histórico de Versões
 
-### **Versão 1.1 (22/10/2025)** - Atual
+### **Versão 1.2 (25/10/2025)** - Atual
+- ✅ **Sistema de exportação para Excel** completo
+- ✅ Botão individual em cada gráfico (17 botões)
+- ✅ Biblioteca XLSX (SheetJS) integrada
+- ✅ Sanitização automática de nomes e caracteres especiais
+- ✅ Dados enriquecidos com totais, percentuais e médias
+- ✅ Validação robusta e tratamento de erros
+- ✅ Logs detalhados para debugging
+- ✅ Nomenclatura inteligente com data/hora
+
+### **Versão 1.1 (22/10/2025)**
 - ✅ Otimizações mobile completas
 - ✅ Tooltips profissionais
 - ✅ Padding padronizado
@@ -344,13 +479,14 @@ Todos os dados são **simulados** mas seguem padrões realistas:
 ## 🎓 Para Apresentação
 
 ### **Destaques para Mostrar:**
-1. **Tema Dark/Light** - Toggle suave
-2. **Responsividade** - Testar em mobile
-3. **Gráficos em Tempo Real** - Auto-atualização
-4. **Tooltips** - Passar mouse nos gráficos
-5. **Página 404** - Digite URL inválida
-6. **Footer** - Role até o final
-7. **Loading States** - Recarregar página
+1. **Exportação para Excel** - Clicar botão em qualquer gráfico 📊⬇️
+2. **Tema Dark/Light** - Toggle suave
+3. **Responsividade** - Testar em mobile
+4. **Gráficos em Tempo Real** - Auto-atualização
+5. **Tooltips** - Passar mouse nos gráficos
+6. **Página 404** - Digite URL inválida
+7. **Footer** - Role até o final
+8. **Loading States** - Recarregar página
 
 ### **Pontos Técnicos:**
 - Next.js 14 com App Router
@@ -378,10 +514,21 @@ Todos os dados são **simulados** mas seguem padrões realistas:
 2. Checar se dados existem
 3. Verificar imports
 
+### **Exportação para Excel falha:**
+1. Abrir console do navegador (F12)
+2. Verificar logs detalhados da exportação
+3. Checar se há dados no gráfico
+4. Aguardar alguns segundos para gráficos em tempo real
+5. Verificar se biblioteca `xlsx` está instalada: `npm install xlsx`
+
 ---
 
 ## 📝 TODO Futuro (Opcional)
 
+- [x] ✅ Exportação para Excel (Concluído v1.2)
+- [ ] Exportação para PDF com gráficos
+- [ ] Exportação de múltiplos dashboards de uma vez
+- [ ] Agendamento de relatórios automáticos
 - [ ] Backend real com API REST em Python
 - [ ] Deploy na Vercel
 
@@ -401,6 +548,7 @@ develop - desenvolvimento
 - **Recharts** - Gráficos
 - **Tailwind CSS** - Estilização
 - **Lucide** - Ícones
+- **SheetJS (XLSX)** - Exportação para Excel
 
 ---
 

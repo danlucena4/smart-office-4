@@ -35,6 +35,12 @@ const onboardingKpis = [
   }
 ];
 
+const funnelData = [
+  { etapa: "Cadastro Iniciado", percentual: 100 },
+  { etapa: "Documentos Enviados", percentual: 87 },
+  { etapa: "Aprovação Final", percentual: 72 }
+];
+
 export default function OnboardingPage() {
   return (
     <div className="space-y-6 sm:space-y-8">

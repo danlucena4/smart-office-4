@@ -1,6 +1,8 @@
 "use client";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { TrendingUp, TrendingDown } from 'lucide-react';
+import ExportChartButton from '@/components/ui/ExportChartButton';
+import { exportChartToExcel, getFileNameWithDate } from '@/lib/export-excel';
 
 interface DataPoint {
   name: string;
@@ -36,22 +38,39 @@ export default function AdvancedLineChart({
   // Altura responsiva
   const responsiveHeight = typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(height, 280) : height;
 
+  const handleExport = () => {
+    const fileName = getFileNameWithDate(title.toLowerCase().replace(/\s+/g, '-'));
+    const exportData = data.map(item => {
+      const row: any = {
+        [data[0]?.name ? 'Período' : 'Item']: item.name,
+        [valueLabel]: item.value,
+      };
+      if (item.target !== undefined) row['Meta'] = item.target;
+      if (item.previousValue !== undefined) row['Valor Anterior'] = item.previousValue;
+      return row;
+    });
+    exportChartToExcel(exportData, fileName, title);
+  };
+
   return (
     <div 
       className="card rounded-xl p-3 sm:p-6 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg"
     >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
         <h3 className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200">{title}</h3>
-        {showTrend && (
-          <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${
-            trend === 'up' 
-              ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' 
-              : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-          }`}>
-            {trend === 'up' ? <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" /> : <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />}
-            {Math.abs(changePercent).toFixed(1)}%
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          {showTrend && (
+            <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${
+              trend === 'up' 
+                ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' 
+                : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+            }`}>
+              {trend === 'up' ? <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" /> : <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />}
+              {Math.abs(changePercent).toFixed(1)}%
+            </div>
+          )}
+          <ExportChartButton onExport={handleExport} />
+        </div>
       </div>
 
       <div className="relative">

@@ -1,5 +1,7 @@
 "use client";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import ExportChartButton from '@/components/ui/ExportChartButton';
+import { exportChartToExcel, getFileNameWithDate } from '@/lib/export-excel';
 
 interface DataPoint {
   name: string;
@@ -32,11 +34,31 @@ export default function AdvancedBarChart({
   // Altura responsiva
   const responsiveHeight = typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(height, 280) : height;
   
+  const handleExport = () => {
+    const fileName = getFileNameWithDate(title.toLowerCase().replace(/\s+/g, '-'));
+    const total = data.reduce((sum, item) => sum + item.value, 0);
+    const exportData = data.map(item => ({
+      'Categoria': item.name,
+      [valueLabel]: item.value,
+      'Percentual (%)': ((item.value / total) * 100).toFixed(1),
+    }));
+    // Adicionar total
+    exportData.push({
+      'Categoria': 'TOTAL',
+      [valueLabel]: total,
+      'Percentual (%)': '100.0',
+    });
+    exportChartToExcel(exportData, fileName, title);
+  };
+
   return (
     <div 
       className="card rounded-xl p-3 sm:p-6 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg"
     >
-      <h3 className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4 sm:mb-6">{title}</h3>
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h3 className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200">{title}</h3>
+        <ExportChartButton onExport={handleExport} />
+      </div>
       
       {/* Legenda customizada */}
       <div className="flex flex-wrap gap-2 sm:gap-3 mb-4">

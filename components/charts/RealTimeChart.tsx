@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { Wifi, XCircle } from 'lucide-react';
+import ExportChartButton from '@/components/ui/ExportChartButton';
+import { exportChartToExcel, getFileNameWithDate } from '@/lib/export-excel';
 
 interface RealTimeDataPoint {
   timestamp: string;
@@ -75,6 +77,48 @@ export default function RealTimeChart({
   const latestValue = data[data.length - 1]?.value || 0;
   const isIncreasing = data.length > 1 && latestValue > data[data.length - 2]?.value;
 
+  const handleExport = () => {
+    // Verificar se há dados disponíveis
+    if (!data || data.length === 0) {
+      alert('⏳ Os dados ainda estão sendo carregados. Por favor, aguarde alguns segundos e tente novamente.');
+      return;
+    }
+    
+    try {
+      console.log('Iniciando exportação...', { dataLength: data.length, title });
+      
+      // Sanitizar o título removendo caracteres especiais
+      const cleanTitle = title
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+        .replace(/[^\w\s-]/g, '') // Remove caracteres especiais exceto espaços e hífens
+        .replace(/\s+/g, '-') // Substitui espaços por hífens
+        .toLowerCase();
+      
+      const fileName = getFileNameWithDate(cleanTitle);
+      
+      const exportData = data.map(item => ({
+        'Horario': item.timestamp,
+        'Valor': item.value,
+        'Status': item.status === 'online' ? 'Online' : 'Offline',
+      }));
+      
+      console.log('Dados preparados para exportação:', { 
+        fileName, 
+        dataCount: exportData.length,
+        sample: exportData[0] 
+      });
+      
+      exportChartToExcel(exportData, fileName, cleanTitle);
+      
+      console.log('Exportação concluída com sucesso!');
+    } catch (error) {
+      console.error('Erro detalhado ao exportar:', error);
+      console.error('Stack trace:', (error as Error).stack);
+      alert(`❌ Erro ao exportar: ${(error as Error).message}`);
+    }
+  };
+
   return (
     <div 
       className="card rounded-xl p-3 sm:p-6 bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border-0 shadow-lg"
@@ -82,6 +126,10 @@ export default function RealTimeChart({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
         <h3 className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200">{title}</h3>
         <div className="flex items-center gap-2 sm:gap-3">
+          <ExportChartButton 
+            onExport={handleExport}
+            tooltip={data.length === 0 ? 'Aguardando dados...' : 'Exportar para Excel'}
+          />
           <div className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
             pulse ? 'scale-110' : 'scale-100'
           } ${
