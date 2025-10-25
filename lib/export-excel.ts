@@ -8,10 +8,6 @@ interface KpiData {
 }
 
 interface ChartData {
-  name: string;
-  value: number;
-  target?: number;
-  previousValue?: number;
   [key: string]: any;
 }
 
@@ -99,7 +95,7 @@ export const exportKpisToExcel = (kpis: KpiData[], fileName: string = 'kpis') =>
  * Exporta dados de gráfico para Excel
  */
 export const exportChartToExcel = (
-  chartData: ChartData[],
+  chartData: any[],
   fileName: string = 'grafico',
   sheetName: string = 'Dados'
 ) => {
